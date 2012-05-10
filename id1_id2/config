@@ -1,0 +1,7 @@
+httproxy.db.driver = com.mysql.jdbc.Driver		
+httproxy.db.url = jdbc:mysql://127.0.0.1:3306/
+httproxy.db.name = proxy
+httproxy.db.table = cache
+httproxy.db.username = root
+httproxy.db.password = 1234
+httproxy.net.port = 8080
