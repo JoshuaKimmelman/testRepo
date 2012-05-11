@@ -127,11 +127,11 @@ public class HttpProxy {
 				conn.bind(reqSock, new BasicHttpParams());
 				this.httpService.handleRequest(conn, new BasicHttpContext(null));
 			} catch (IOException e) {
-				errorPrint("Error accepting request on proxy server. IO malfunction.");
+				printErr("Error accepting request on proxy server. IO malfunction.");
 			} catch (HttpException e) {
-				errorPrint("Error accepting request on proxy server. Http malfunction.");
+				printErr("Error accepting request on proxy server. Http malfunction.");
 			} catch (Exception e) {
-				errorPrint("Error accepting request on proxy server. Unknown error.");
+				printErr("Error accepting request on proxy server. Unknown error.");
 			} finally {
 				close(conn, reqSock);
 			}
@@ -139,16 +139,29 @@ public class HttpProxy {
 	}
 	
 	
+	/**
+	 * Prints msg to stdout
+	 * @param string
+	 */
 	public static void printMsg(String string) {
 		System.out.println(string);
 	}
 
 
-	public static void errorPrint(String string) {
+	/**
+	 * Prints msg to stderr
+	 * @param string
+	 */
+	public static void printErr(String string) {
 		System.err.println(string);
 	}
 
 
+	/**
+	 * Closes a socket and a connection
+	 * @param conn Connection to be closed
+	 * @param socket Socket to be closed
+	 */
 	public static void close(HttpConnection conn, Socket socket) {
 		try {
 			if (conn != null)
@@ -170,6 +183,10 @@ public class HttpProxy {
 		
 	}
 	
+	/**
+	 * Sets the response to be an 500 internal server error response
+	 * @param response The response
+	 */
 	public static void set500Response(HttpResponse response) {
 		response.setStatusLine(HttpVersion.HTTP_1_1, HttpStatus.SC_INTERNAL_SERVER_ERROR, "Internal Server Error");
 	}

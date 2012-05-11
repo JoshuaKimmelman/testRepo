@@ -1,15 +1,14 @@
 package il.technion.cs236369.proxy;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.UnknownHostException;
 
 import javax.net.SocketFactory;
-import javax.net.ssl.SSLSocketFactory;
 
 import org.apache.http.Header;
 import org.apache.http.HttpRequest;
@@ -105,7 +104,7 @@ public class HttpProxyRequestHandlerTest {
 
 	@Test
 	public void testParseHearders() {
-		Header[] h = pr.parseHearders("a=1\r\nb=2");
+		Header[] h = pr.parseHeaders("a=1\r\nb=2");
 		assertEquals("a", h[0].getName());
 		assertEquals("1", h[0].getValue());
 		assertEquals("b", h[1].getName());
